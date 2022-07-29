@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "314627872634",
+    "project_id": "nutrifit-c9d86",
+    "storage_bucket": "nutrifit-c9d86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314627872634:android:92dd316a3aca2b6d2d28c3",
+        "android_client_info": {
+          "package_name": "com.arya.fitpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314627872634-2eg2skta3qof46lgauthoen1kctfp56t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arya.fitpro",
+            "certificate_hash": "76968d37c90339cbd90f0a211731bd7a72bb0d90"
+          }
+        },
+        {
+          "client_id": "314627872634-pnu6bmhmcirjo38v2qbm1qhlaqv51lrm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4JNPtNMY25CFP3pgbGgckakprafbvT1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314627872634-pnu6bmhmcirjo38v2qbm1qhlaqv51lrm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
