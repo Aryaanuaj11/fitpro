@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../components/calculator.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -9,10 +10,23 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  double _bmi = 20;
-  double _amr = 20;
-
+  late double _bmi = 0;
+  late double _targetCalorie = 0;
   bool _showCalc = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTarget();
+  }
+
+  Future<void> _loadTarget() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _targetCalorie = prefs.getDouble("target") ?? 0;
+      _bmi = prefs.getDouble("bmi") ?? 0;
+    });
+  }
 
   void _onTapRecalc() {
     setState(() {
@@ -20,10 +34,15 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
-  void _changeBmi(double bmi, double amr) {
+  Future<void> _changeBmi(double bmi, double amr) async {
+    final prefs = await SharedPreferences.getInstance();
     setState(() {
+      _showCalc = false;
       _bmi = double.parse(bmi.toStringAsFixed(2));
-      _amr = double.parse(amr.toStringAsFixed(0));
+      _targetCalorie = double.parse(amr.toStringAsFixed(0));
+
+      prefs.setDouble("bmi", _bmi);
+      prefs.setDouble("target", _targetCalorie);
     });
   }
 
@@ -70,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       const Text("Target Calories"),
                       Text(
-                        _amr.toString(),
+                        _targetCalorie.toString(),
                         style: const TextStyle(fontSize: 42),
                       ),
                       const Text(

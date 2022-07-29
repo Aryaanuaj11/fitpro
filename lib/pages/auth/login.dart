@@ -116,14 +116,14 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             TextButton(
                                 onPressed: () {},
-                                child: Text("Forgot Password?")),
+                                child: const Text("Forgot Password?")),
                           ],
                         ),
                         Row(
                           children: [
                             Expanded(
                               child: ElevatedButton(
-                                child: Text("Login"),
+                                child: const Text("Login"),
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
                                     try {
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                                           PageRouteBuilder(
                                             pageBuilder: (context, animation,
                                                     secondaryAnimation) =>
-                                                HomePage(),
+                                                const HomePage(),
                                             transitionsBuilder: (context,
                                                     animation,
                                                     secondaryAnimation,
@@ -151,16 +151,16 @@ class _LoginPageState extends State<LoginPage> {
                                         );
 
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                          content: Text("Login Successful"),
+                                            .showSnackBar(const SnackBar(
+                                          content: const Text("Login Successful"),
                                         ),
                                         );
                                       }
                                     } catch (e) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        SnackBar(
-                                          content: Text("Login Failed"),
+                                        const SnackBar(
+                                          content: const Text("Login Failed"),
                                         ),
                                       );
                                       
@@ -198,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                                         PageRouteBuilder(
                                           pageBuilder: (context, animation,
                                                   secondaryAnimation) =>
-                                              HomePage(),
+                                              const HomePage(),
                                           transitionsBuilder: (context,
                                                   animation,
                                                   secondaryAnimation,
@@ -212,14 +212,14 @@ class _LoginPageState extends State<LoginPage> {
 
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        SnackBar(
-                                          content: Text("Login Successful"),
+                                        const SnackBar(
+                                          content: const Text("Login Successful"),
                                         ),
                                       );
                                     }
                                   } catch (e) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                         content: Text("Login Failed"),
                                       ),
                                     );
@@ -253,7 +253,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         );
                       },
-                      child: Text("Don't have an account? Sign up"),
+                      child: const Text("Don't have an account? Sign up"),
                     ),
                   ],
                 ),

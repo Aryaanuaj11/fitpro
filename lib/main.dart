@@ -9,38 +9,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
 
-void main() async{
+void main() async {
   await dotenv.load(fileName: ".env");
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Firebase.initializeApp();
     return MaterialApp(
-      title: 'Nutrifit',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData( 
-       primarySwatch: Colors.teal,
-       brightness: Brightness.light,
-       fontFamily: "WorkSans",
-      ),
-      home: FutureBuilder(
-          future: Firebase.initializeApp(),
-          builder: (context,snaps) {
-                 return const OnboardingPage();
-            return StreamBuilder<User?>(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if(!snapshot.hasData) return const OnboardingPage();
-                return const HomePage();
-            },
-          );
-        },
-      ),
-    );
+        title: 'Nutrifit',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.teal,
+          brightness: Brightness.light,
+          fontFamily: "WorkSans",
+        ),
+        home: getLandingPage());
   }
 }
+
+Widget getLandingPage() {
+  return StreamBuilder<User?>(
+    stream: FirebaseAuth.instance.authStateChanges(),
+    builder: (context, snapshot) {
+      if (snapshot.hasData && (!snapshot.data!.isAnonymous)) {
+        return const HomePage();
+      }
+      return const OnboardingPage();
+    },
+  );
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -92,11 +93,3 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
-
-
-  
-
-
-
-
-  
