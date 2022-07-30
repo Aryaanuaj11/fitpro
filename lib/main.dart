@@ -17,29 +17,32 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Firebase.initializeApp();
     return MaterialApp(
-        title: 'Nutrifit',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.teal,
-          brightness: Brightness.light,
-          fontFamily: "WorkSans",
-        ),
-        home: getLandingPage());
+      title: 'Nutrifit',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+        brightness: Brightness.light,
+        fontFamily: "WorkSans",
+      ),
+      home: FutureBuilder(
+        future: Firebase.initializeApp(),
+        builder: (context, snaps) {
+          // return const OnboardingPage();
+          return const MyHomePage(title: "Home Page");
+          // return StreamBuilder<User?>(
+          //   stream: FirebaseAuth.instance.authStateChanges(),
+          //   builder: (context, snapshot) {
+          //     if (snapshot.hasData && (!snapshot.data!.isAnonymous)) {
+          //       return const HomePage();
+          //     }
+          //     return const OnboardingPage();
+          //   },
+          // );
+        },
+      ),
+    );
   }
-}
-
-Widget getLandingPage() {
-  return StreamBuilder<User?>(
-    stream: FirebaseAuth.instance.authStateChanges(),
-    builder: (context, snapshot) {
-      if (snapshot.hasData && (!snapshot.data!.isAnonymous)) {
-        return const HomePage();
-      }
-      return const OnboardingPage();
-    },
-  );
 }
 
 class MyHomePage extends StatefulWidget {
@@ -52,7 +55,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 0;
 
   final List<Widget> _pages = <Widget>[
     const DietPage(),

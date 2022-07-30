@@ -27,17 +27,41 @@ class _DietPageState extends State<DietPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SearchBox(
-              searchController: _searchController,
-              formKey: _formKey,
-              searchCallback: getResults),
-          if (displayResult) SizedBox(child: ResultBox(results: results))
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SearchBox(
+                searchController: _searchController,
+                formKey: _formKey,
+                searchCallback: getResults),
+            if (displayResult) SizedBox(child: ResultBox(results: results)),
+            Card(
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                        child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          "Daily Calorie",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                        const Text("Total Calorie"),
+                      ],
+                    ))
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

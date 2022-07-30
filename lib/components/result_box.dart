@@ -42,6 +42,8 @@ class ResultBox extends StatelessWidget {
                         return ListTile(
                           leading: const Icon(Icons.list),
                           title: Text(result["food"]["label"].toString()),
+                          trailing: IconButton(
+                              onPressed: () {}, icon: Icon(Icons.add)),
                           subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children:
